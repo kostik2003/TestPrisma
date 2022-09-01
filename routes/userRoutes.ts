@@ -7,6 +7,6 @@ router.use(express.json())
 
 router.post('/', userController.create)
 router.get('/', userController.getAll)
-router.get('/:id', userController.test)
+router.get('/:id', userController.getOne)
 
 module.exports = router

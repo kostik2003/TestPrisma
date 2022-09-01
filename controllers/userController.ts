@@ -28,18 +28,18 @@ class UserController {
         }
     }
 
-    async getOne(req: any, res: any) {
+    async getOne(req: any, res: any, next: any) {
         try{
-            const { id } = req.body //TODO: когда используется body, а когда params
+            const { id } = req.params //TODO: когда используется body, а когда params
             const user = await prisma.user.findUnique({
                 where: {
-                    id,
+                    id: Number(id)
                 },
             })
             return res.json(user)
         }
         catch (e) {
-            console.log("Bad Request 2")
+            next(ApiError.internal("User not found"))
         }
     }
 
@@ -48,28 +48,6 @@ class UserController {
         })
         return res.json(user)
     }
-
-
-    async test (req: any, res: any, next: any) {
-
-        try {
-            const { id } = req.params
-            if(!id) {
-                return next(ApiError.badRequest('Не задан id'))
-            }
-            const user = await prisma.user.findUnique({
-                where: {
-                   id: Number(id) //TODO: сделать везде поиск по id.
-                }
-            })
-            return res.json(user)
-        }
-        catch (e) {
-            next(ApiError.internal('internal'))
-        }
-
-    }
-
 
 }
 

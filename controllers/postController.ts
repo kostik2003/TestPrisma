@@ -37,19 +37,15 @@ class PostController  {
     }
 
     async getAll(req: any, res: any, next: any,) {
-        let {authorId, published , skip, take, limit } = req.query
+        let {authorId, published , skip, take} = req.query
 
         try{
             let posts
             if(authorId && published) {
-                posts = await prisma.post.findMany({
+                 posts = await prisma.post.findMany({
                     skip: Number(skip) || undefined,
                     take: Number(take) || undefined,
-                    cursor: {
-                      id: limit,
-                    },
-                    where: {authorId: Number(authorId), published: false}
-
+                    where: {authorId: Number(authorId), published: false},
                 })
             }
             if(!authorId && published) {

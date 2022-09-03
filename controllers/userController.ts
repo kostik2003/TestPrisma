@@ -32,9 +32,11 @@ class UserController {
         try{
             const { id } = req.params //TODO: когда используется body, а когда params
             const user = await prisma.user.findUnique({
+
                 where: {
                     id: Number(id)
                 },
+
             })
             return res.json(user)
         }
@@ -43,12 +45,35 @@ class UserController {
         }
     }
 
-    async getAll(req: any, res: any) {
-        const user = await prisma.user.findMany({
-        })
-        return res.json(user)
+    async getAll(req: any, res: any, next: any) {
+        const { skip, take} = req.query
+        let user
+        try {
+            if(!skip && !take)
+                user = await prisma.user.findMany({
+                })
+            if(skip && !take){
+                user = await prisma.user.findMany({
+                    skip: Number(skip)
+                })
+            }
+            if(!skip && take){
+                user = await prisma.user.findMany({
+                    take: Number(take)
+                })
+            }
+            if(skip && take){
+                user = await prisma.user.findMany({
+                    skip: Number(skip),
+                    take: Number(take)
+                })
+            }
+            return res.json(user)
+
+        }
+        catch (e) {
+            next(ApiError.badRequest("Users not found"))
+        }
     }
-
 }
-
 module.exports = new UserController()

@@ -37,35 +37,41 @@ class PostController  {
     }
 
     async getAll(req: any, res: any, next: any,) {
-        let {authorId, published , skip, take} = req.query
+        let {authorId, published , take, page} = req.query
 
         try{
             let posts
-            if(authorId && published) {
+            if(published && page && take) {
                  posts = await prisma.post.findMany({
-                    skip: Number(skip) || undefined,
-                    take: Number(take) || undefined,
-                    where: {authorId: Number(authorId), published: false},
+                    skip: (page - 1) * Number(take),
+                    take: Number(take),
+                    where: { published: false },
                 })
             }
-            if(!authorId && published) {
+
+            else if(!published && page && take) {
                 posts = await prisma.post.findMany({
-                    skip: Number(skip) || undefined,
-                    take: Number(take) || undefined,
-                    where: {published: false}
+                    skip: (page - 1) * Number(take),
+                    take: Number(take),
                 })
             }
-            if(authorId && !published) {
+            if(authorId && page && take) {
                 posts = await prisma.post.findMany({
-                    skip: Number(skip) || undefined,
-                    take: Number(take) || undefined,
-                    where: { authorId: Number(authorId)}
+                    skip: (page - 1) * Number(take),
+                    take: Number(take),
+                    where: {
+                        authorId: Number(authorId)
+                    }
                 })
             }
-            if(!authorId && !published) {
+            else if(authorId && page && take && published) {
                 posts = await prisma.post.findMany({
-                    skip: Number(skip) || undefined,
-                    take: Number(take) || undefined,
+                    skip: (page - 1) * Number(take),
+                    take: Number(take),
+                    where: {
+                        published: Boolean(published),
+                        authorId: Number(authorId)
+                    }
                 })
             }
 

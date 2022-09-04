@@ -46,31 +46,22 @@ class UserController {
     }
 
     async getAll(req: any, res: any, next: any) {
-        const { skip, take} = req.query
+        const {take, page} = req.query
         let user
         try {
-            if(!skip && !take)
+            if(page && take){
                 user = await prisma.user.findMany({
-                })
-            if(skip && !take){
-                user = await prisma.user.findMany({
-                    skip: Number(skip)
-                })
-            }
-            if(!skip && take){
-                user = await prisma.user.findMany({
+                    skip: (page -1) * Number(take),
                     take: Number(take)
                 })
             }
-            if(skip && take){
+            else if (!page && !take) {
                 user = await prisma.user.findMany({
-                    skip: Number(skip),
-                    take: Number(take)
                 })
             }
             return res.json(user)
-
         }
+
         catch (e) {
             next(ApiError.badRequest("Users not found"))
         }

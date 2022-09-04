@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2389425a-716d-47c2-86c7-b3190f17c9be" name="Changes" comment="Added pagination">
+    <list default="true" id="2389425a-716d-47c2-86c7-b3190f17c9be" name="Changes" comment="Added pagination on userController">
+      <change afterPath="$PROJECT_DIR$/controllers/authController.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/authRouter.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/postController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/postController.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/userController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/userController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/mainRouites.ts" beforeDir="false" afterPath="$PROJECT_DIR$/routes/mainRouites.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +74,8 @@
       <workItem from="1662052980855" duration="13048000" />
       <workItem from="1662069590644" duration="60000" />
       <workItem from="1662136593400" duration="14233000" />
-      <workItem from="1662203321776" duration="10450000" />
+      <workItem from="1662203321776" duration="11110000" />
+      <workItem from="1662295629147" duration="9907000" />
     </task>
     <task id="LOCAL-00001" summary="start commit">
       <created>1661976645073</created>
@@ -134,7 +140,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662150421890</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Added pagination on userController">
+      <created>1662239300853</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1662239300853</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,6 +168,7 @@
     <MESSAGE value="start commit" />
     <MESSAGE value="Added sort postController" />
     <MESSAGE value="Added pagination" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added pagination" />
+    <MESSAGE value="Added pagination on userController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added pagination on userController" />
   </component>
 </project>
